@@ -7,7 +7,6 @@ const titleError = document.getElementById('titleError');
 const authorError = document.getElementById('authorError');
 const pagesError = document.getElementById('pagesError');
 const body = document.getElementsByTagName('body');
-const bookEditBtn = document.querySelectorAll('.book-edit');
 const updateButton = document.getElementById('updateBook');
 const updateTitle = document.getElementById('updateTitle');
 const updateAuthor = document.getElementById('updateAuthor');
