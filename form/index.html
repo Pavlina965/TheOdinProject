@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <meta lang="en">
+    <link href="../LandingPageStylesheet.css" rel="stylesheet">
+    <link href="formStylesheet.css" rel="stylesheet">
+
+</head>
+<body>
+
+<main>
+    <div class="left">
+
+        <div class="image">
+            <p id="logo">LOGO</p>
+        </div>
+        <div class="author">
+            <p>Photo by: Vermeulen Job</p>
+        </div>
+    </div>
+    <div class="right">
+        <div class="Border">
+            <p>this is text </p>
+        </div>
+        <div class="form">
+            <p>To register, please fill this form</p>
+            <form method="#" id="my-form">
+                <label for="first-name">First Name</label>
+                <input id="first-name" type="text">
+                <label for="last-name">Last Name</label>
+                <input id="last-name" type="text">
+                <label for="password">Password</label>
+                <input type="password" class="password" required="required" id="password">
+
+                <label for="phone-number">Phone number</label>
+                <input id="phone-number">
+                <label for="email">Email</label>
+                <input id="email" type="email">
+                <label for="confirm-password">Confirm password</label>
+                <input type="password" class="password" required="required" id="confirm-password">
+                <div class="error-msg"></div>
+            </form>
+        </div>
+        <div class="Border submit">
+            <button form="my-form" type="submit">Submit</button>
+        </div>
+        <p>Already have an account? <a href=#>Log In</a></p>
+    </div>
+</main>
+</body>
+<script src="script.js"></script>
+</html>

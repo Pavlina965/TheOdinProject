@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <meta lang="en">
+    <link href="../LandingPageStylesheet.css" rel="stylesheet">
+    <link href="stylesheet.css" rel="stylesheet">
+
+</head>
+<body>
+<main>
+    <div class=Table>
+        <table id="libraryTable">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Read</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="tableBody">
+
+            </tbody>
+
+        </table>
+    </div>
+    <div class="addBook">
+        <h3>Add Book</h3>
+        <form>
+            <span id="titleError" class="errorText"></span>
+            <input id="title" type="text"  placeholder="Title" required>
+            <span id="authorError" class="errorText"></span>
+            <input id="author" type="text"  placeholder="Author" required>
+            <span id="pagesError" class="errorText"></span>
+            <input id="pages" type="number"  placeholder="Number" required>
+            <fieldset role="radiogroup">
+                <legend>Did you read it?</legend>
+                <label for="yes"> <input id="yes" type="radio" name="read" value="yes" checked=""><span>Yes</span></label>
+                <label for="no"> <input id="no" type="radio" name="read" value="no" checked=""><span>No</span></label>
+            </fieldset>
+            <div class="button-container">
+                <button type="submit" id="addBook">Add book</button>
+
+            </div>
+        </form>
+
+    </div>
+</main>
+</body>
+<script src="library.js"></script>
+</html>

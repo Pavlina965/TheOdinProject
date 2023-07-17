@@ -1,0 +1,110 @@
+main {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+.left {
+    display: flex;
+    justify-content: center;
+    background-image: url("../images/job-vermeulen-gMiWi0ulCLc-unsplash.jpg");
+    background-color: black;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    width: 40vw;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right {
+    background-color: #dddddd;
+    display: flex;
+    width: 60vw;
+    flex-direction: column;
+    align-items: center
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    height: 80%;
+    width: 60vw;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 10px #969696;
+}
+
+#my-form {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+    gap: 1rem;
+    width: 70%;
+    height: 40%;
+    align-items: flex-start;
+    flex-direction: column;
+    flex: 0 0;
+}
+
+.image {
+    color: rgb(206, 96, 32);
+    display: flex;
+    height: 4rem;
+    width: 40vw;
+    background-color: rgba(150, 150, 150, 0.35);
+    justify-content: center;
+    align-items: center;
+}
+
+.author {
+    color: #dddddd;
+    position: absolute;
+    bottom: 0;
+    left: 27vw;
+}
+
+#my-form input {
+    border: solid 1px #969696;
+    height: 20px;
+    box-shadow: 0 5px 5px #dddddd;
+    outline: none;
+    border-radius: 5px;
+    color: black;
+}
+
+#my-form input:focus, input:active {
+    outline: none;
+    border: solid 2px #c17e33;
+}
+
+.Border {
+    display: flex;
+    height: 30%;
+    align-items: center
+}
+
+.submit button {
+    background-color: #c17e33;
+    height: 3rem;
+    width: 10rem;
+    border-radius: 5px;
+    border: 1px solid #c17e33;
+}
+
+.submit button:hover {
+    background-color: #dddddd;
+}
+
+.right p a {
+    color: #c17e33;
+}
+
+.right p a:hover {
+    color: black;
+}
+.error{
+    color: red !important;
+    border: red solid 1px !important;
+}
