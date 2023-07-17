@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sketch</title>
+    <meta lang="en">
+    <link href="stylesheet.css" rel="stylesheet">
+    <link href="../LandingPageStylesheet.css" rel="stylesheet">
+
+
+</head>
+<body>
+<header>
+    <nav class="menu">
+
+        <a href="../index.html">Home</a>
+        <a href="#">About</a>
+        <div class="logo"><img src="../images/logo.jpg"></div>
+    </nav>
+</header>
+<main class="Container">
+
+    <div class="Grid" id="grid"></div>
+    <div class="settings">
+        <button class="Buttons" id="btnErase">Erase</button>
+        <button class="Buttons" id="btnClear">Clear</button>
+        <input id="colourPicker" type="color">
+        <div id="gridSize">
+            <input class="slider" id="gridSizeSlider" type="range" value="16" min="1" max="100">
+            <div id="sliderValue">16x16</div>
+        </div>
+        <button class="Buttons" id="gridSizeSet">Set grid</button>
+    </div>
+
+    <script src="script.js"></script>
+</main>
+</body>
+</html>
