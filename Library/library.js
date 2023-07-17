@@ -8,6 +8,10 @@ const authorError = document.getElementById('authorError');
 const pagesError = document.getElementById('pagesError');
 const body = document.getElementsByTagName('body');
 const bookEditBtn = document.querySelectorAll('.book-edit');
+const updateButton = document.getElementById('updateBook');
+const updateTitle = document.getElementById('updateTitle');
+const updateAuthor = document.getElementById('updateAuthor');
+const updatePages = document.getElementById('updatePages');
 
 
 function Book(Title, Author, numP, read) {
@@ -81,20 +85,23 @@ function checkInput() {
     }
 }
 
+
+function closeForm() {
+    document.getElementById('editForm').style.display = "none";
+}
 function createLibrary() {
     const tbody = document.getElementById('tableBody');
     tbody.textContent = '';
     for (let i = 0; i < myLibrary.length; i++) {
         const row = document.createElement('tr');
-        row.setAttribute('id', 'book' + i)
-        row.classList.add('Book')
+        
+        row.classList.add('book')
         tbody.appendChild(row);
         for (let j = 0; j < Book.length; j++) {
             const bookInfo = document.createElement('td');
             switch (j) {
                 case 0:
                     bookInfo.textContent = myLibrary[i].title;
-                    //bookInfo.setAttribute('contenteditable',true)
                     break;
                 case 1:
                     bookInfo.textContent = myLibrary[i].author;
@@ -111,28 +118,38 @@ function createLibrary() {
                     break
             }
 
-            bookInfo.classList.add('Book-info');
             row.appendChild(bookInfo);
 
         }
         const deleteData = document.createElement('td')
         const editData = document.createElement('td')
+        const editBtn = document.createElement('button')
+        const deleteBtn = document.createElement('button')
 
-        const  editBtn = document.createElement('button')
         editBtn.innerHTML = "Edit"
-        editBtn.addEventListener('click',()=>{
-           const book = document.getElementById('Book'+i)
-            console.log(book)
+        deleteBtn.innerHTML = "Delete"
 
-            //const bookTd = book.querySelector('td')
-            //bookTd.forEach(book =>console.log(book))
-
+        editBtn.addEventListener('click', ()=> {
+            openForm(i);
+            updateButton.onclick = () => {
+                event.preventDefault();
+                myLibrary[i].title = updateTitle.value;
+                myLibrary[i].author = updateAuthor.value;
+                myLibrary[i].pages = updatePages.value;
+                if (document.getElementById('updateYes').checked)
+                    {
+                    myLibrary[i].read = true;
+                    }
+                else{
+                    myLibrary[i].read=false;
+                    }
+                createLibrary();
+                closeForm();
+            };
         })
 
-        const deleteBtn = document.createElement('button')
-        deleteBtn.innerHTML = "Delete"
-        deleteBtn.addEventListener('click' ,()=>{
-            myLibrary.splice(i,1)
+        deleteBtn.addEventListener('click', () => {
+            myLibrary.splice(i, 1)
             createLibrary()
         })
         editData.appendChild(editBtn)
@@ -142,7 +159,7 @@ function createLibrary() {
     }
 
 }
-
+        
 
 function updateTable() {
     createLibrary()
@@ -160,3 +177,24 @@ submitButton.addEventListener('click', () => {
     }
 
 })
+
+
+
+function openForm(bookId) {
+    document.getElementById('editForm').style.display = "block";
+    updateTitle.value = myLibrary[bookId].title;
+    updateAuthor.value = myLibrary[bookId].author;
+    updatePages.value = myLibrary[bookId].pages;
+    if (myLibrary[bookId].read) {
+        document.getElementById('updateYes').checked = true;
+
+    }
+    else {
+        document.getElementById('updateNo').checked = true;
+    }
+}
+
+
+
+
+
