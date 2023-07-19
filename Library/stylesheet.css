@@ -1,9 +1,9 @@
-.book{
-/* border: 1px solid black; */
-margin: 0 20%;
+.book {
+  /* border: 1px solid black;*/
+  margin: 0 20%;
 }
 
-table{
+table {
   /* border: 1px solid red; */
   display: none;
   width: 100%;
@@ -11,96 +11,202 @@ table{
   padding: 10px;
   border-spacing: 0;
   border-collapse: collapse;
+  table-layout: fixed;
 
 }
+
 table td,
 table th {
   /* border-bottom: 1px solid #8268ab; */
   padding: 5px;
   height: 20px;
 }
-table thead th{
+
+table thead th {
   width: 30%;
-  background: #8268ab;;
+  background: #8268ab;
+  ;
 }
-td{
+
+td {
   word-break: break-all;
-  
+
 }
 
-table thead th:nth-child(3),table thead th:nth-child(4),table thead th:nth-child(5),table thead th:nth-child(6){
+table thead th:nth-child(3),
+table thead th:nth-child(4),
+table thead th:nth-child(5),
+table thead th:nth-child(6) {
   width: 6%;
+  min-width: 62px;
 }
 
-table td:nth-child(5),table td:nth-child(6) {
+table td:nth-child(5),
+table td:nth-child(6) {
   padding: 0;
   border: none;
   text-align: right;
 
 }
-table tr:nth-child(even){
+
+table tr:nth-child(even) {
   background: #8268ab20;
 }
 
-table td:nth-child(4){
+table td:nth-child(4) {
   cursor: pointer;
 }
 
-table button{
+table button {
+
+  width: 95%;
+  height: 90%;
+  margin: 0;
+}
+
+button:active {
+  transform: scale(1.01);
+
+}
+
+.addBook {
+  box-shadow: 0px 0px 10px 1px #b5b5f6;
+  padding: 5%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.addBook form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.addBook input[type=text],
+.addBook input[type=number] {
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  max-width: 200px;
+
+}
+
+.addBook input[type=text]:focus,
+.addBook input[type=number]:focus {
+  outline: none;
+  box-shadow: inset 0px 0px 7px 0px #b5b5f6;
+}
+
+button {
   border: none;
   display: inline-block;
-  width: 95%; 
-  height: 90%;
+  width: 10%;
+  min-width: 70px;
+  height: 30px;
   background: #b5b5f69e;
   border-radius: 12%;
   cursor: pointer;
-}
-table button:hover{
-  background: #b5b5f6 ;
-  box-shadow: 0px 3px 8px 0px #b5b5f6 ;
-
-}
-table button:active{
-  transform: scale(1.01);
-  
+  margin: 5px;
 }
 
-.addBook{
-  /* border: 1px solid yellow; */
+button:hover {
+  background: #b5b5f6;
+  box-shadow: 0px 3px 8px 0px #b5b5f6;
 }
 
 .form-popup {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, 5%);
-    z-index: 9;
-    box-shadow: 4px 5px 10px 5px #b5b5f6;
-    padding: 5%;
-    width: 150px;
-    height: 200px;
-    background: linear-gradient(170deg, rgba(199,199,232,1) 35%, rgba(255,255,255,1) 100%);
-  }
-  fieldset{
-    border: none;
-  }
-  .form-popup form{
-    display: flex;
-    flex-direction: column;
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, 5%);
+  z-index: 9;
+  padding: 5%;
+  /* width: 150px;
+  height: 200px; */
+  background: linear-gradient(170deg, rgba(199, 199, 232, 1) 35%, rgba(255, 255, 255, 1) 100%);
+}
 
-  }
-  .form-popup input{
-    margin: 5px;
-  }
-.dark{
+fieldset {
+  border: none;
+}
+
+.tabs {
+  display: flex;
+  position: relative;
+  background-color: #fff;
+  height: 30px;
+  border-radius: 99px;
+}
+
+.tabs * {
+  z-index: 2;
+}
+
+.tabs input[type="radio"] {
+  display: none;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 20px; */
+  width: 50px;
+  font-size: .8rem;
+  color: black;
+  font-weight: 500;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: color 0.15s ease-in;
+}
+
+.tabs input[type="radio"]:checked+label {
+  color: #fff;
+}
+
+.tabs input[id="yes"]:checked~.glider {
+  transform: translateX(0);
+  border-radius: 99px 0 0 99px;
+}
+
+.tabs input[id="no"]:checked~.glider {
+  transform: translate(100%);
+  border-radius: 0 99px 99px 0;
+
+}
+
+.glider {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 50%;
+  background-color: #61618e;
+  z-index: 1;
+  transition: 0.25s ease-out;
+}
+
+.form-popup form {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.form-popup input {
+  margin: 5px;
+}
+
+.dark {
   background: #61618e;
 }
-.dark .book form input{
-  background: rgb(70, 69, 69);
-  opacity: 0.5;
-}
-.dark .book button{
+
+
+.dark .book button {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.dark .addBook {
+  display: none;
 }

@@ -15,22 +15,22 @@
     <h1>Library</h1>
     <main>
         <div class="book">
-                <table id="libraryTable">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Author</th>
-                            <th>Pages</th>
-                            <th>Read</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
+            <table id="libraryTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Pages</th>
+                        <th>Read</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
 
-                    </tbody>
+                </tbody>
 
-                </table>
+            </table>
             <div class="addBook">
                 <h3>Add Book</h3>
                 <form>
@@ -42,16 +42,20 @@
                     <input id="pages" type="number" min="0" placeholder="Number of pages" required
                         oninput="validity.valid||(value='');">
                     <fieldset role="radiogroup">
-                        <legend>Did you read it?</legend>
-                        <label for="yes"> <input id="yes" type="radio" name="read" value="yes"
-                                checked=""><span>Yes</span></label>
-                        <label for="no"> <input id="no" type="radio" name="read" value="no"
-                                checked=""><span>No</span></label>
-                    </fieldset>
-                    <div class="button-container">
-                        <button type="submit" id="addBook">Add book</button>
 
-                    </div>
+                        <legend>Did you read it?</legend>
+                        <div class="tabs">
+                            <input id="yes" type="radio" name="read" value="yes" checked="">
+                            <label class="tab" for="yes"> Yes</label>
+                            <input id="no" type="radio" name="read" value="no" checked="">
+                            <label class="tab" for="no">No</label>
+                            <span class="glider"></span>
+                        </div>
+                    </fieldset>
+                    <!-- <div class="button-container"> -->
+                    <button type="submit" id="addBook">Add book</button>
+
+                    <!-- </div> -->
                 </form>
 
             </div>
