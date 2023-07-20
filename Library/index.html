@@ -62,19 +62,23 @@
         </div>
         <div class="form-popup" id="editForm">
             <form>
-                <input id="updateTitle" type="text" placeholder="Title" required>
-                <input id="updateAuthor" type="text" placeholder="Author" required>
-                <input id="updatePages" type="number" placeholder="Number" required>
+                <label for updateTitle>Title</label><input id="updateTitle" type="text" placeholder="Title" required>
+                <label for updateAuthor>Author</label><input id="updateAuthor" type="text" placeholder="Author" required>
+                <label for updatePages>Number of pages</label><input id="updatePages" type="number" placeholder="Number" required>
                 <fieldset role="radiogroup">
                     <legend>Did you read it?</legend>
-                    <label for="yes"> <input id="updateYes" type="radio" name="read" value="yes"
-                            checked=""><span>Yes</span></label>
-                    <label for="no"> <input id="updateNo" type="radio" name="read" value="no"
-                            checked=""><span>No</span></label>
+                    <div class="tabs">
+                        <input id="updateYes" type="radio" name="read" value="yes" checked="">
+                        <label class="tab" for="updateYes">Yes</label>
+                        <input id="updateNo" type="radio" name="read" value="no" checked="">
+                        <label class="tab" for="updateNo">No</label>
+                        <span class="glider"></span>
+                    </div>
                 </fieldset>
-
-                <button type="submit" id="updateBook">Update</button>
-                <button type="button" class="btnCancel" onclick="closeForm()">Close</button>
+                <div class="buttons">
+                    <button type="submit" id="updateBook">Update</button>
+                    <button type="button" class="btnCancel" onclick="closeForm()">Close</button>
+                </div>
             </form>
         </div>
     </main>

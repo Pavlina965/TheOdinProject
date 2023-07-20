@@ -1,10 +1,9 @@
+
 .book {
-  /* border: 1px solid black;*/
-  margin: 0 20%;
+  margin: 0 auto;
 }
 
 table {
-  /* border: 1px solid red; */
   display: none;
   width: 100%;
   text-align: left;
@@ -17,13 +16,13 @@ table {
 
 table td,
 table th {
-  /* border-bottom: 1px solid #8268ab; */
   padding: 5px;
   height: 20px;
 }
 
 table thead th {
-  width: 30%;
+  width: 5%;
+  min-width: 100px;
   background: #8268ab;
   ;
 }
@@ -37,7 +36,7 @@ table thead th:nth-child(3),
 table thead th:nth-child(4),
 table thead th:nth-child(5),
 table thead th:nth-child(6) {
-  width: 6%;
+  width: 1%;
   min-width: 62px;
 }
 
@@ -73,27 +72,31 @@ button:active {
   box-shadow: 0px 0px 10px 1px #b5b5f6;
   padding: 5%;
   margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
+  min-width: 300px;
+  width: 50%;
 }
 
-.addBook form {
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
 
 }
 
-.addBook input[type=text],
-.addBook input[type=number] {
+input[type=text],
+input[type=number] {
   margin: 5px;
   padding: 5px;
   border: none;
-  max-width: 200px;
+  min-width: 100px;
 
 }
 
-.addBook input[type=text]:focus,
-.addBook input[type=number]:focus {
+input[type=text]:focus,
+input[type=number]:focus {
   outline: none;
   box-shadow: inset 0px 0px 7px 0px #b5b5f6;
 }
@@ -115,24 +118,12 @@ button:hover {
   box-shadow: 0px 3px 8px 0px #b5b5f6;
 }
 
-.form-popup {
-  display: none;
-  position: fixed;
-  left: 50%;
-  top: 30%;
-  transform: translate(-50%, 5%);
-  z-index: 9;
-  padding: 5%;
-  /* width: 150px;
-  height: 200px; */
-  background: linear-gradient(170deg, rgba(199, 199, 232, 1) 35%, rgba(255, 255, 255, 1) 100%);
-}
 
 fieldset {
   border: none;
 }
 
-.tabs {
+ .tabs {
   display: flex;
   position: relative;
   background-color: #fff;
@@ -140,15 +131,15 @@ fieldset {
   border-radius: 99px;
 }
 
-.tabs * {
+ .tabs * {
   z-index: 2;
 }
 
-.tabs input[type="radio"] {
+ .tabs input[type="radio"] {
   display: none;
 }
 
-.tab {
+ .tab {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,16 +153,16 @@ fieldset {
   transition: color 0.15s ease-in;
 }
 
-.tabs input[type="radio"]:checked+label {
+  input[type="radio"]:checked+label {
   color: #fff;
 }
 
-.tabs input[id="yes"]:checked~.glider {
+ .tabs input[id="yes"]:checked~.glider, .tabs input[id="updateYes"]:checked~.glider{
   transform: translateX(0);
   border-radius: 99px 0 0 99px;
 }
 
-.tabs input[id="no"]:checked~.glider {
+ .tabs input[id="no"]:checked~.glider, .tabs input[id="updateNo"]:checked~.glider {
   transform: translate(100%);
   border-radius: 0 99px 99px 0;
 
@@ -187,16 +178,32 @@ fieldset {
   transition: 0.25s ease-out;
 }
 
-.form-popup form {
-  display: flex;
-  flex-direction: column;
+.form-popup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, 5%);
+  z-index: 9;
+  padding: 5%;
+  /* width: 150px;
+  height: 200px; */
+  background: linear-gradient(170deg, rgba(199, 199, 232, 1) 35%, rgba(255, 255, 255, 1) 100%);
+}
+.form-popup label{
+  width: 90%;
+}
+.errorText{
+  word-wrap: break-word;
+  font-size: small;
+  width: inherit;
+  color: #af0c0c;
+    background-color: #ffe0e0;
+}
+input :invalid + .errorText{
+  display: block;
 
 }
-
-.form-popup input {
-  margin: 5px;
-}
-
 .dark {
   background: #61618e;
 }

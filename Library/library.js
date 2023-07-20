@@ -70,12 +70,9 @@ function checkInput() {
     } else if (addAuthor.value !== "") {
         authorError.textContent = "";
     }
-    if (addPages.value === null || addPages.value <= 0) {
-        if (addPages.value === null) {
+    if (addPages.value === "" || addPages.value <= 0) {
+        
             pagesError.textContent = "please add number of pages in this book";
-        } else if (addPages.value <= 0) {
-            pagesError.textContent = "have you ever seen a book with zero or negative number of pages?";
-        }
     } else if (addPages.value !== "") {
         pagesError.textContent = "";
     }
