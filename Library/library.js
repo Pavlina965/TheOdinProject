@@ -23,7 +23,6 @@ function isRead() {
 }
 
 function addBookToLibrary() {
-
     let title = addTitle.value;
     let author = addAuthor.value;
     let pages = addPages.value;
@@ -76,7 +75,6 @@ function createLibrary() {
     tbody.textContent = '';
 
     for (let i = 0; i < myLibrary.length; i++) {
-
         const row = document.createElement('tr');
         const bookInfo = document.createElement('td');
         const bookTitle = document.createElement('td');
@@ -109,7 +107,7 @@ function createLibrary() {
             }
         })
 
-        row.append(bookTitle, bookAuthor,bookPages,bookInfo);
+        row.append(bookTitle, bookAuthor, bookPages, bookInfo);
 
         const deleteData = document.createElement('td')
         const editData = document.createElement('td')
@@ -145,7 +143,7 @@ function createLibrary() {
         })
         editData.appendChild(editBtn)
         deleteData.appendChild(deleteBtn)
-        row.append(editData,deleteData)
+        row.append(editData, deleteData)
     }
 }
 
@@ -178,8 +176,3 @@ function openForm(bookId) {
         document.getElementById('updateNo').checked = true;
     }
 }
-
-
-
-
-
