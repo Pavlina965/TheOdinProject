@@ -1,0 +1,49 @@
+*{
+    height: 100%;
+}
+body{
+    margin: 0;
+    background: rgb(158, 158, 158);
+    height: 100%;
+}
+h1{
+    height: 10%;
+}
+header, footer{
+    height: 5%;
+
+}
+.nav a {
+    height: auto;
+    text-decoration: none;
+    padding: 5px;
+    color: rgb(108, 108, 108);
+    background: #fff;
+}
+
+.nav a:hover {
+    color: rgb(48, 48, 48);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    /* padding: 10px; */
+}
+
+.restaurantName {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+main{
+    height: 100%;
+    max-width: 600px;
+    padding: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    background: #8b8b8b52;
+}
