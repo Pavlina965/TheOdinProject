@@ -18,9 +18,6 @@ h1{
     width: 3em;
 
 }
-.logo{
-    margin-left: auto;
-}
 .menu{
     display: flex;
     background-color: lavender;
