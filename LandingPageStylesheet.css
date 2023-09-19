@@ -61,3 +61,23 @@ a:hover{
 .button:hover{
    transform:  scale(1.1) ;
 }
+.aboutMe{
+    margin: auto;
+    width: 50%;
+    padding: 2px;
+    
+}
+.aboutMe p{
+    display: flex;
+    line-height: 30px;
+}
+.footer{
+    position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #c7c7e8;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
