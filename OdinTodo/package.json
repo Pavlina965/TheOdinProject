@@ -1,6 +1,9 @@
 {
   "name": "odintodo",
   "version": "1.0.0",
+  "repository": {
+    "url": "git+https://github.com/pavlina965/TheOdinProject.git"
+  },
   "description": "",
   "private": "true",
   "scripts": {
@@ -8,7 +11,9 @@
     "watch": "webpack --watch",
     "start": "webpack serve --open",
     "server": "node server.js",
-    "build": "webpack"
+    "build": "webpack --mode=development",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +21,7 @@
   "devDependencies": {
     "css-loader": "^6.8.1",
     "express": "^4.18.2",
+    "gh-pages": "^6.0.0",
     "html-webpack-plugin": "^5.5.3",
     "style-loader": "^3.3.3",
     "webpack": "^5.88.2",
