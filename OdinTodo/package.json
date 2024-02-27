@@ -1,9 +1,7 @@
 {
   "name": "odintodo",
   "version": "1.0.0",
-  "repository": {
-    "url": "git+https://github.com/pavlina965/TheOdinProject.git"
-  },
+  
   "description": "",
   "private": "true",
   "scripts": {
