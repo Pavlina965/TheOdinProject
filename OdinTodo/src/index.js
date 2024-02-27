@@ -54,6 +54,7 @@ function loadPage() {
 }
 //load projects
 function loadProjects() {
+  localStorage.setItem("projects", JSON.stringify(projects.projectArr));
   for (let i = 0; i < projects.projectArr.length; i++) {
     //creating projects list
     const projectP = document.createElement("p");
@@ -186,13 +187,11 @@ function deleteProject(index) {
 
 //load tasks
 function loadTasks(index) {
-  const activeProject = document.getElementById(index);
-  // if (activeProject == null) {
-  //   activeProject = 0;
-  //   console.log(activeProject);
-  // }
-  const activeProjectName = activeProject.textContent;
+  localStorage.setItem("projects", JSON.stringify(projects.projectArr));
+  const activeProject = projects.projectArr[index];
 
+  const activeProjectName = activeProject.title;
+  console.log(projects.projectArr[index]);
   projectName.data = activeProjectName;
   projectName.id = activeProject.id;
   document.getElementById("todoList").innerHTML = "";

@@ -51,6 +51,9 @@ nav {
 .editIcon:hover,.deleteIcon:hover{
   color: #dbdde6;
 }
+.editIcon, .deleteIcon{
+  margin: 2px;
+}
 .menu p,
 .menu div {
   width: 100%;

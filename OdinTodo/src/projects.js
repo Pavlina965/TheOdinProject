@@ -3,7 +3,9 @@ const projects = (() => {
   let projId = projectArr.length;
   let currId =0;
   
+  if (localStorage.getItem("projects")===null){
   projectArr = [
+
     {
       title: "Inbox",
       id: 0,
@@ -33,17 +35,22 @@ const projects = (() => {
       ],
     },
   ];
-
+}
+else {
+  const storredProjects = JSON.parse(localStorage.getItem("projects"));
+  projectArr = storredProjects;
+}
+  
   class Project {
     constructor(title) {
       this.title = title;
-      currId = projId +1;
       console.log(currId);
       this.id = currId;
+      currId = projId +1;
       this.tasks = [];
     }
   }
-
+  
   function addProject(title) {
     const project = new Project(title);
     projectArr.push(project);
