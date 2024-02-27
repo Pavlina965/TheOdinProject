@@ -1,44 +1,102 @@
-html,body{
+html,
+body,
+main {
+  height: 100%;
+  margin: 0;
+}
+.popUpForm {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 20%;
+  background-color: #707599;
+  transform: translate(-50%, 5%);
+  z-index: 9;
+  height: 200px;
+  width: 400px;
 
-    height: 100%;
-    margin: 0;
+  box-shadow: 0px 0px 10px 1px #707599;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
 }
-main{
-    display:flex;
-    height: 100%;
+.popUpForm #closePopUpButton{
+    position: absolute;
+    top: 5%;
+    left: 95%
 }
-nav{
-    background-color: #4A4E69;
-    display: flex;
-    align-items: center;
-    padding: 10px;
+#closePopUpButton:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
-.menu{
-    width: 30%;
-    background-color: #707599;
-    /* display: flex;
+.mainContainer {
+  display: flex;
+  height: 100%;
+}
+nav {
+  background-color: #4a4e69;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.menu {
+  width: 35%;
+  background-color: #707599;
+  padding: 0;
+  cursor: pointer;
+  /* display: flex;
     align-items: center;
     flex-direction: column; */
 }
-.menu p{
+.editIcon:hover,.deleteIcon:hover{
+  color: #dbdde6;
+}
+.menu p,
+.menu div {
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+  text-align: center;
+}
+.menu p:hover {
+  
+  background-color: #7d82a2;
+  width: 100%;
+}
+/* .menu div{
     width: 100%;
     padding: 10px;
     margin: 0;
     text-align: center;
-    
+} */
+.menu div:hover {
+  transform: scale(1.1);
 }
-.menu p:hover{
-    background-color: #7D82A2;
+.hidden {
+  display: none;
 }
-.hidden{
-    display: none;
+.blurr{
+    opacity: 0.3;
 }
-.todo{
-    padding: 10px;
-    background-color: #DBDDE6;
-    width: 100%;
+.todo {
+  padding: 10px;
+  background-color: #dbdde6;
+  width: 100%;
 }
 
-li{
-    list-style: none;
+li {
+  list-style: none;
+}
+.checked {
+  text-decoration: line-through;
+}
+.listName {
+  border-bottom: #4a4e69 1px solid;
+}
+#todoList li {
+  display: flex;
+  justify-content: space-between;
+}
+.markDiv {
+  cursor: pointer;
 }

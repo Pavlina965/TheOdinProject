@@ -1,8 +1,12 @@
 const projects = (() => {
   let projectArr = [];
+  let projId = projectArr.length;
+  let currId =0;
+  
   projectArr = [
     {
       title: "Inbox",
+      id: 0,
       tasks: [
         {
           title: "task1",
@@ -14,6 +18,7 @@ const projects = (() => {
     },
     {
       title: "Groceries",
+      id: 1,
       tasks: [
         {
           title: "apples",
@@ -32,6 +37,9 @@ const projects = (() => {
   class Project {
     constructor(title) {
       this.title = title;
+      currId = projId +1;
+      console.log(currId);
+      this.id = currId;
       this.tasks = [];
     }
   }
@@ -40,9 +48,19 @@ const projects = (() => {
     const project = new Project(title);
     projectArr.push(project);
   }
+  function editProject(index,title){
+    projectArr[index].title = title;
+  }
+
+  function deleteProject(index){
+    projectArr.splice(index, 1);
+
+  }
   return {
     projectArr,
     addProject,
+    editProject,
+    deleteProject,
   };
 })();
 export default projects;

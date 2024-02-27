@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title>TodoList</title>
     <script
       src="https://kit.fontawesome.com/74f90f8a3d.js"
       crossorigin="anonymous"
@@ -19,23 +19,30 @@
       </nav>
     </header>
     <main>
-      <div id="todoMenu" class="menu">
+      <div class="popUpForm">
+        <span id="popUpName">new project</span>
+        <span id="closePopUpButton"><i class="fa-solid fa-xmark"></i></span>
+        <form id="popUp">
+          <input type="text" id="projectInput" placeholder="New project name..." />
+          <button type="submit" id="addProjectButton">Add</button>
+        </form>
       </div>
-      <div class="todo">
-        <div id="listName" class="listName">
-          index
-          <div class="listInput">
+      <div class="mainContainer">
+        <div id="projectMenu" class="menu"></div>
+        <div class="todo">
+          <div id="projectName" class="projecName">index</div>
+          <form class="todoForm">
             <input
-              type="text"
-              id="todoInput"
-              placeholder="write what you want to acomplish..."
+            type="text"
+            id="todoInput"
+            placeholder="write what you want to acomplish..."
             />
             <input type="date" id="dateInput" />
-            <button id="addTodoButton">add</button>
-          </div>
+            <button type="submit" id="addTodoButton">add</button>
+          </form>
           <ul id="todoList"></ul>
         </div>
       </div>
-    </main>
+      </main>
   </body>
 </html>
