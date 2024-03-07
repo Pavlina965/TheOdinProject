@@ -1,33 +1,40 @@
-import projects from './projects';
+import projects from "./projects";
 
+// let taskID = 0;
 const toDo = (() => {
-
-class Task{
-
-    constructor(title, completed, project){
-        this.title = title;
-        // this.dueDate = dueDate;
-        this.completed = false;
-        this.project = project;
+  class Task {
+    constructor(title, completed, projectID, dueDate) {
+    //   this.id = taskID;
+    //   taskID ++;
+      this.title = title;
+      this.completed = false;
+      this.projectID = projectID;
+      this.dueDate = dueDate;
     }
-}
+  }
+
+  function addTask(title, projectID, dueDate) {
+    // const project = projects.projectArr[projectID].title;
+    // console.log(project);
+    const task = new Task(title, false, projectID, dueDate);
     
-    function addTask(title, projectId){
-        const task = new Task(title,projectId);
 
-        projects.projectArr[projectId].tasks.push(task);
-    }
-    function deleteTask(projectId, taskId){
-        projects.projectArr[projectId].tasks.splice(taskId,1);
-
-    }
-    function completeTask(projectID,taskId){
-        projects.projectArr[projectID].tasks[taskId].completed = true;
-    }
-    return{
-        addTask,
-        deleteTask,
-        completeTask,
-    };
+    projects.projectArr[projectID].tasks.push(task);
+  }
+  function deleteTask(projectID, taskID) {
+    projects.projectArr[projectID].tasks.splice(taskID, 1);
+  }
+  function completeTask(projectID, taskID) {
+    projects.projectArr[projectID].tasks[taskID].completed = true;
+  }
+  function getTodayTask(projectID, taskID, title) {
+    projects.projectArr[projectID].tasks[taskID].dueDate;
+  }
+  return {
+    getTodayTask,
+    addTask,
+    deleteTask,
+    completeTask,
+  };
 })();
 export default toDo;

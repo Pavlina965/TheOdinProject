@@ -12,9 +12,9 @@ const projects = (() => {
       tasks: [
         {
           title: "task1",
-          dueDate: '2023-4-10',
           completed: false,
-          project: "inbox",
+          projectID: 0,
+          dueDate: new Date('2024-3-6'),
         },
       ],
     },
@@ -25,12 +25,12 @@ const projects = (() => {
         {
           title: "apples",
           completed: false,
-          project: "Groceries",
+          projectID: 1,
         },
         {
           title: "meat",
           completed: false,
-          project: "Groceries",
+          projectID: 1,
         },
       ],
     },
@@ -44,7 +44,7 @@ else {
   class Project {
     constructor(title) {
       this.title = title;
-      console.log(currId);
+      // console.log(currId);
       this.id = currId;
       currId = projId +1;
       this.tasks = [];

@@ -3,7 +3,7 @@ import "./style.css";
 import toDo from "./todo";
 
 const addTodoButton = document.querySelector("#addTodoButton");
-const todoList = document.querySelector("ul");
+const todoList = document.querySelector("#todoList");
 const todoInputTask = document.querySelector("#todoInput");
 const menuBtn = document.querySelector("#menu");
 const todoInputDate = document.getElementById("dateInput");
@@ -15,14 +15,27 @@ const divMenu = document.querySelector("#projectMenu");
 const popUpBtn = document.querySelector("#addProjectButton");
 const closePopUpBtn = document.querySelector("#closePopUpButton");
 const popUpName = document.querySelector("#popUpName");
-// const today = new Date();
-// todoInputDate.valueAsDate = today;
+const today = document.querySelector("#today");
+const todayFullDate = new Date();
+const todayDate = new Date(
+  todayFullDate.getFullYear(),
+  todayFullDate.getMonth(),
+  todayFullDate.getDate()
+);
+// (new Date()).toDateString();
+// console.log(today);
+// todoInputDate.valueAsDate = todayDate;
+
 //load page
 // console.log(projects.projectArr);
 function loadPage() {
+  // const indexProject = document.createElement("p");
+  // indexProject.id = "Today";
+  // // indexProject.classList.add("projects");
+  // indexProject.textContent = "Today";
+  // divMenu.appendChild(indexProject);
   loadProjects();
   formPopUp.style.display = "none";
-
   //add new project button
   const addNewProjectDiv = document.createElement("div");
   addNewProjectDiv.id = "addNewProject";
@@ -50,7 +63,73 @@ function loadPage() {
   // projectName.data = HomeProject.textContent;
   // const projectId = HomeProject.id;
   loadTasks(0);
+  // console.log(projects.projectArr[0]);
   // closePopUp();
+  today.onclick = () => {
+    showTaskDate();
+  };
+}
+function showTaskDate() {
+  projectName.data = "Today";
+  document.querySelector(".todoForm").style.display = "none";
+  todoList.innerHTML = "";
+  // console.log()
+  for (let i = 0; i < projects.projectArr.length; i++) {
+    const currentProject = projects.projectArr[i];
+    for (let j = 0; j < projects.projectArr[i].tasks.length; j++) {
+      if (
+        Date.parse(projects.projectArr[i].tasks[j].dueDate) === Date.parse(todayDate)
+        ) {
+        const todoItem = document.createElement("li");
+        // todoItem.id = j;
+        todoItem.classList.add(projects.projectArr[i].title)
+        todoItem.classList.add(i);
+        todoItem.classList.add("taskID"+ j);
+        const isChecked = projects.projectArr[i].tasks[j].completed;
+        if (isChecked) {
+          todoItem.className = "checked";
+        }
+        const todoItemtText = document.createTextNode(
+          projects.projectArr[i].tasks[j].title
+        );
+        todoItem.appendChild(todoItemtText);
+
+        todoList.appendChild(todoItem);
+        const todoDiv = document.createElement("div");
+        todoDiv.className = "markDiv";
+
+        const check = document.createElement("span");
+        check.innerHTML = '<i class="fa-regular fa-square-check"></i>';
+        check.className = "check";
+        todoDiv.appendChild(check);
+
+        const close = document.createElement("span");
+        close.innerHTML = '<i class="fa-regular fa-rectangle-xmark"></i>';
+        close.className = "close";
+        todoDiv.appendChild(close);
+        todoItem.appendChild(todoDiv);
+
+        //completing task
+        const checkListItems = document.getElementsByClassName("check");
+        for (let k = 0; k < checkListItems.length; k++) {
+          checkListItems[k].onclick = () => {
+            completeListItem(j, currentProject.id);
+            const checkedItem = todoList.childNodes[k];
+            checkedItem.className = "checked";
+          };
+        }
+        // deleting task
+        const closeListItems = document.getElementsByClassName("close");
+        for (let l = 0; l < closeListItems.length; l++) {
+          closeListItems[l].onclick = () => {
+            deleteListItem(j, currentProject.id);
+          };
+        }
+        localStorage.setItem("projects", JSON.stringify(projects.projectArr));
+      } else {
+      }
+    }
+  }
 }
 //load projects
 function loadProjects() {
@@ -94,6 +173,7 @@ function loadProjects() {
       loadPage();
     });
   }
+  // console.log(JSON.parse(localStorage.getItem("projects")));
 }
 loadPage();
 
@@ -187,18 +267,20 @@ function deleteProject(index) {
 
 //load tasks
 function loadTasks(index) {
+  document.querySelector(".todoForm").style.display = "flex";
   localStorage.setItem("projects", JSON.stringify(projects.projectArr));
   const activeProject = projects.projectArr[index];
 
   const activeProjectName = activeProject.title;
-  console.log(projects.projectArr[index]);
   projectName.data = activeProjectName;
   projectName.id = activeProject.id;
-  document.getElementById("todoList").innerHTML = "";
+  todoList.innerHTML = "";
 
   //loading tasks from project array
   for (let i = 0; i < projects.projectArr[index].tasks.length; i++) {
     const todoItem = document.createElement("li");
+    todoItem.id = i;
+
     const isChecked = projects.projectArr[index].tasks[i].completed;
     if (isChecked) {
       todoItem.className = "checked";
@@ -208,7 +290,6 @@ function loadTasks(index) {
     );
     todoItem.appendChild(todoItemtText);
 
-    const todoList = document.querySelector("#todoList");
     todoList.appendChild(todoItem);
     const todoDiv = document.createElement("div");
     todoDiv.className = "markDiv";
@@ -250,11 +331,17 @@ function addListItem() {
   event.preventDefault();
   const todoInputText = todoInputTask.value;
   const todoInputDate = document.getElementById("dateInput").value;
+  const todoDueFullDate = new Date(todoInputDate);
+  const todoDueDate = new Date(
+    todoDueFullDate.getFullYear(),
+    todoDueFullDate.getMonth(),
+    todoDueFullDate.getDate()
+  );
   const todoProject = projectName.id;
-
-  toDo.addTask(todoInputText, todoProject, todoInputDate.value);
+  // console.log(todoDueDate);
+  toDo.addTask(todoInputText, todoProject, todoDueDate);
   document.getElementById("todoInput").value = "";
-
+  // console.log(todoInputDate);
   loadTasks(todoProject);
 }
 
