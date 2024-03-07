@@ -15,7 +15,6 @@ const divMenu = document.querySelector("#projectMenu");
 const popUpBtn = document.querySelector("#addProjectButton");
 const closePopUpBtn = document.querySelector("#closePopUpButton");
 const popUpName = document.querySelector("#popUpName");
-const today = document.querySelector("#today");
 const todayFullDate = new Date();
 const todayDate = new Date(
   todayFullDate.getFullYear(),
@@ -34,6 +33,12 @@ function loadPage() {
   // // indexProject.classList.add("projects");
   // indexProject.textContent = "Today";
   // divMenu.appendChild(indexProject);
+  const createTodayP= document.createElement("p");
+  createTodayP.textContent= "Today";
+  createTodayP.id = "today";
+  divMenu.appendChild(createTodayP);
+  const today = document.querySelector("#today");
+
   loadProjects();
   formPopUp.style.display = "none";
   //add new project button
