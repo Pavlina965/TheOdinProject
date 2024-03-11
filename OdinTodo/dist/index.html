@@ -20,31 +20,44 @@
     </header>
     <main>
       <div class="popUpForm">
-        <span id="popUpName">new project</span>
-        <span id="closePopUpButton"><i class="fa-solid fa-xmark"></i></span>
-        <form id="popUp">
-          <input type="text" id="projectInput" placeholder="New project name..." />
-          <button type="submit" id="addProjectButton">Add</button>
+        <h1 id="popUpName">New project</h1>
+        <form method="post">
+          <div class="popUpInput">
+            <label for="projectInput">Project Name:</label>
+            <input type="text" id="projectInput" required />
+          </div>
+          <div class="buttons">
+            <input type="submit" id="closePopUpButton" value="Close" />
+            <input type="submit" id="addProjectButton" value="Add Project" />
+          </div>
+        </form>
+      </div>
+      <div class="todoForm" style="display: none">
+        <h1>New Task</h1>
+        <form>
+          <div class="TodoInput">
+            <label for="todoInput">Title:</label>
+            <input type="text" id="todoInput" required />
+            <label for="dateInput">Due Date:</label>
+            <input type="date" id="dateInput" />
+          </div>
+          <div class="buttons">
+            <input type="submit" id="closeToDoButton" value="Close" />
+            <input type="submit" id="addTodoButton" value="Add Task" />
+          </div>
         </form>
       </div>
       <div class="mainContainer">
-        <div id="projectMenu" class="menu">
-          <!-- <p id="today">Today</p> -->
-        </div>
+        <div id="projectMenu" class="menu"></div>
         <div class="todo">
           <div id="projectName" class="projecName">index</div>
-          <form class="todoForm">
-            <input
-            type="text"
-            id="todoInput"
-            placeholder="write what you want to acomplish..."
-            />
-            <input type="date" id="dateInput" />
-            <button type="submit" id="addTodoButton">add</button>
-          </form>
-          <ul id="todoList"></ul>
+          
+          <div class="todoList">
+            <ul id="todoList"></ul>
+            <div id="addTask"><i class="fa-solid fa-plus"></i>Add Task</div>
+          </div>
         </div>
       </div>
-      </main>
+    </main>
   </body>
 </html>

@@ -4,31 +4,106 @@ main {
   height: 100%;
   margin: 0;
 }
-.popUpForm {
-  display: none;
+/* .popUpHeader {
+  /* padding: 5px; */
+/* font-weight: bold; */
+/* }
+
+/* #popUp {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+.popUpForm, .todoForm {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #a6a9c0;
+  border-radius: 5px;
+  background-color: #dbdde6;
+
+  /* /* display: none; */
   position: fixed;
   left: 50%;
   top: 20%;
-  background-color: #707599;
-  transform: translate(-50%, 5%);
   z-index: 9;
+  transform: translate(-50%, 5%);
+  /*
+  background-color: #707599;
   height: 200px;
   width: 400px;
-
+  border-radius: 10px;
   box-shadow: 0px 0px 10px 1px #707599;
   flex-direction: column;
   align-items: center;
-  padding-top: 15px;
+  padding-top: 15px; */
 }
-.popUpForm #closePopUpButton{
-    position: absolute;
-    top: 5%;
-    left: 95%
+ label {
+  display: block;
+  margin-bottom: 10px;
+  color: #22223b;
 }
-#closePopUpButton:hover{
-    transform: scale(1.1);
-    cursor: pointer;
+input[type="text"], input[type="date"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #a6a9c0;
+  border-radius: 3px;
+  background-color: #dbdde6;
+  color: #22223b;
+  /* height: 100%; */
 }
+/* #popUpInput [type="text"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #7d82a2;
+  border-radius: 3px;
+  background-color: #dbdde6;
+  color: #4a4e69; 
+   background-color: #707599;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid #4a4e69; 
+} */
+
+input:focus {
+  outline: none;
+  border: 1px solid #7d82a2;
+  caret-color: #7d82a2;
+  transition-duration: 1s;
+}
+
+input[type="submit"] {
+  background-color: #4a4e69;
+  color: #dbdde6;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+  width: 100%;
+  padding: 10px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin: 6px;
+}
+#closePopUpButton:hover {
+  background-color: #a6a9c0;
+}
+#addProjectButton:hover {
+  background-color: #fe664fc3;
+}
+#addProjectButton {
+  background-color: #fe654f;
+}
+
 .mainContainer {
   display: flex;
   height: 100%;
@@ -48,10 +123,12 @@ nav {
     align-items: center;
     flex-direction: column; */
 }
-.editIcon:hover,.deleteIcon:hover{
+.editIcon:hover,
+.deleteIcon:hover {
   color: #dbdde6;
 }
-.editIcon, .deleteIcon{
+.editIcon,
+.deleteIcon {
   margin: 2px;
 }
 .menu p,
@@ -62,7 +139,6 @@ nav {
   text-align: center;
 }
 .menu p:hover {
-  
   background-color: #7d82a2;
   width: 100%;
 }
@@ -78,9 +154,10 @@ nav {
 .hidden {
   display: none;
 }
-.blurr{
-    opacity: 0.3;
+.blurr {
+  opacity: 0.3;
 }
+
 .todo {
   padding: 10px;
   background-color: #dbdde6;
@@ -93,13 +170,22 @@ li {
 .checked {
   text-decoration: line-through;
 }
-.listName {
-  border-bottom: #4a4e69 1px solid;
+.todoList {
+  padding: 5px;
+}
+#todoList {
+  margin: 0;
+  padding: 0;
 }
 #todoList li {
+  padding: 5px;
+  border-bottom: #4a4e69 1px solid;
   display: flex;
   justify-content: space-between;
 }
 .markDiv {
   cursor: pointer;
+}
+#addTask {
+  padding-top: 5px;
 }
