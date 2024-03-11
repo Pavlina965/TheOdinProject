@@ -81,14 +81,14 @@ function showTodayTaks() {
   // console.log()
   for (let i = 0; i < projects.projectArr.length; i++) {
     localStorage.setItem("projects", JSON.stringify(projects.projectArr));
-    const currentProject = projects.projectArr[i];
+    // const currentProject = projects.projectArr[i];
     for (let j = 0; j < projects.projectArr[i].tasks.length; j++) {
       if (
         Date.parse(projects.projectArr[i].tasks[j].dueDate) ===
         Date.parse(todayDate)
       ) {
         const todoItem = document.createElement("li");
-        todoItem.classList.add(projects.projectArr[i].title);
+        todoItem.classList.add(projects.projectArr[i].title + i);
         // todoItem.classList.add(i);
         todoItem.classList.add("TaskId" + j);
         const check = document.createElement("span");
@@ -120,43 +120,45 @@ function showTodayTaks() {
         close.className = "close";
         todoDiv.appendChild(close);
         todoItem.appendChild(todoDiv);
-
-        //completing task
+        
         const toDoListItems = document.getElementsByClassName("listItem");
         for (let k = 0; k < toDoListItems.length; k++) {
+          const toDo = todoList.childNodes[k];
+          const todoClass = toDo.classList[1];
+          const toDoId = getNumberFromClass(todoClass);
+          const projectId = getNumberFromClass(toDo.classList[0]);
+          // deleting task
+          
+          const closeListItems = document.getElementsByClassName("close");
+          // for (let l = 0; l < closeListItems.length; l++) {
+            closeListItems[k].onclick = () => {
+              // console.log(toDoId, projectId);
+              deleteListItem(toDoId, projectId);
+              showTodayTaks();
+            };
+          //completing task
           toDoListItems[k].onclick = () => {
-            const toDo = todoList.childNodes[k];
-            const todoClass = toDo.classList[1];
-            const toDoId = getNumberFromClass(todoClass);
             if (toDo.classList.contains("checked")) {
-              toDo.childNodes[0].innerHTML =
-                '<i class="fa-regular fa-square"></i>';
-              projects.projectArr[currentProject.id].tasks[
-                toDoId
-              ].completed = false;
+              // console.log(currentProject.id)
+              toDo.childNodes[0].innerHTML ='<i class="fa-regular fa-square"></i>';
+              projects.projectArr[projectId].tasks[toDoId].completed = false;
+              // console.log(projects.projectArr[projectId].id);
+              
               toDo.classList.add("check");
               toDo.classList.remove("checked");
             } else {
-              console.log(toDo.childNodes[0]);
-
-              completeListItem(toDoId, currentProject.id);
-              toDo.childNodes[0].innerHTML =
-                '<i class="fa-regular fa-square-check"></i>';
+              
+              completeListItem(toDoId, projectId);
+              toDo.childNodes[0].innerHTML ='<i class="fa-regular fa-square-check"></i>';
               // check.innerHTML = '<i class="fa-regular fa-square"></i>';
-
+              // console.log(projects.projectArr[projectId].id);
+              
               toDo.classList.add("checked");
               toDo.classList.remove("check");
             }
             // showTodayTaks();
           };
-        }
-        // deleting task
-        const closeListItems = document.getElementsByClassName("close");
-        for (let l = 0; l < closeListItems.length; l++) {
-          closeListItems[l].onclick = () => {
-            console.log(l, currentProject.id);
-            deleteListItem(l, currentProject.id);
-          };
+          
         }
       }
     }
@@ -386,6 +388,7 @@ function loadTasks(index) {
     for (let i = 0; i < closeListItems.length; i++) {
       closeListItems[i].onclick = () => {
         deleteListItem(i, activeProject.id);
+        loadTasks(activeProject.id);
       };
     }
   }
@@ -418,7 +421,7 @@ function addListItem() {
 //delete task from project
 function deleteListItem(taskIndex, projectId) {
   toDo.deleteTask(projectId, taskIndex);
-  loadTasks(projectId);
+  // loadTasks(projectId);
 }
 function completeListItem(taskIndex, projectId) {
   toDo.completeTask(projectId, taskIndex);
