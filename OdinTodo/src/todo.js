@@ -27,8 +27,8 @@ const toDo = (() => {
   function completeTask(projectID, taskID) {
     projects.projectArr[projectID].tasks[taskID].completed = true;
   }
-  function getTodayTask(projectID, taskID, title) {
-    projects.projectArr[projectID].tasks[taskID].dueDate;
+  function getTodayTask(projectID, taskID) {
+    return projects.projectArr[projectID].tasks[taskID].dueDate;
   }
   return {
     getTodayTask,

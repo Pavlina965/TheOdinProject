@@ -24,22 +24,25 @@ const todayDate = new Date(
   todayFullDate.getMonth(),
   todayFullDate.getDate()
 );
-// (new Date()).toDateString();
-// console.log(today);
+//set today date to input
 // todoInputDate.valueAsDate = todayDate;
 
-//load page
-// console.log(projects.projectArr);
-addTaskBtn.onclick = () => {
-  todoForm.style.display = "block";
+//blurr page
+function blurrPage(formShow, formHide) {
+  formShow.style.display = "block";
   mainContainer.classList.add("blurr");
-  formPopUp.style.display = "none";
+  formHide.style.display = "none";
+}
+addTaskBtn.onclick = () => {
+  blurrPage(todoForm, formPopUp);
 };
+
+//load page
 function loadPage() {
-  const createTodayP = document.createElement("p");
-  createTodayP.textContent = "Today";
-  createTodayP.id = "today";
-  divMenu.appendChild(createTodayP);
+  const todayP = document.createElement("p");
+  todayP.textContent = "Today";
+  todayP.id = "today";
+  divMenu.appendChild(todayP);
   const today = document.querySelector("#today");
 
   loadProjects();
@@ -81,18 +84,18 @@ function showTodayTaks() {
   // console.log()
   for (let i = 0; i < projects.projectArr.length; i++) {
     localStorage.setItem("projects", JSON.stringify(projects.projectArr));
-    // const currentProject = projects.projectArr[i];
+    const currentProject = projects.projectArr[i];
+    const currentProjectId = currentProject.id;
     for (let j = 0; j < projects.projectArr[i].tasks.length; j++) {
       if (
-        Date.parse(projects.projectArr[i].tasks[j].dueDate) ===
+        Date.parse(toDo.getTodayTask(currentProjectId, j)) ===
         Date.parse(todayDate)
       ) {
         const todoItem = document.createElement("li");
-        todoItem.classList.add(projects.projectArr[i].title + i);
-        // todoItem.classList.add(i);
+        todoItem.classList.add(currentProject.title + i);
         todoItem.classList.add("TaskId" + j);
         const check = document.createElement("span");
-        const isChecked = projects.projectArr[i].tasks[j].completed;
+        const isChecked = currentProject.tasks[j].completed;
         if (isChecked) {
           todoItem.classList.add("checked");
           check.innerHTML = '<i class="fa-regular fa-square-check"></i>';
@@ -102,8 +105,9 @@ function showTodayTaks() {
         }
         todoItem.classList.add("listItem");
         const todoItemtText = document.createTextNode(
-          projects.projectArr[i].tasks[j].title
+          currentProject.tasks[j].title
         );
+
         todoItem.appendChild(check);
         todoItem.appendChild(todoItemtText);
 
@@ -120,45 +124,37 @@ function showTodayTaks() {
         close.className = "close";
         todoDiv.appendChild(close);
         todoItem.appendChild(todoDiv);
-        
+
         const toDoListItems = document.getElementsByClassName("listItem");
+        const deleteListItemBtn = document.getElementsByClassName("close");
+
         for (let k = 0; k < toDoListItems.length; k++) {
           const toDo = todoList.childNodes[k];
           const todoClass = toDo.classList[1];
           const toDoId = getNumberFromClass(todoClass);
           const projectId = getNumberFromClass(toDo.classList[0]);
+
           // deleting task
-          
-          const closeListItems = document.getElementsByClassName("close");
-          // for (let l = 0; l < closeListItems.length; l++) {
-            closeListItems[k].onclick = () => {
-              // console.log(toDoId, projectId);
-              deleteListItem(toDoId, projectId);
-              showTodayTaks();
-            };
+          deleteListItemBtn[k].onclick = () => {
+            deleteListItem(toDoId, projectId);
+            showTodayTaks();
+          };
           //completing task
           toDoListItems[k].onclick = () => {
             if (toDo.classList.contains("checked")) {
-              // console.log(currentProject.id)
-              toDo.childNodes[0].innerHTML ='<i class="fa-regular fa-square"></i>';
+              toDo.childNodes[0].innerHTML =
+                '<i class="fa-regular fa-square"></i>';
               projects.projectArr[projectId].tasks[toDoId].completed = false;
-              // console.log(projects.projectArr[projectId].id);
-              
               toDo.classList.add("check");
               toDo.classList.remove("checked");
             } else {
-              
               completeListItem(toDoId, projectId);
-              toDo.childNodes[0].innerHTML ='<i class="fa-regular fa-square-check"></i>';
-              // check.innerHTML = '<i class="fa-regular fa-square"></i>';
-              // console.log(projects.projectArr[projectId].id);
-              
+              toDo.childNodes[0].innerHTML =
+                '<i class="fa-regular fa-square-check"></i>';
               toDo.classList.add("checked");
               toDo.classList.remove("check");
             }
-            // showTodayTaks();
           };
-          
         }
       }
     }
@@ -172,6 +168,7 @@ function getNumberFromClass(className) {
   }
   return null;
 }
+
 //load projects
 function loadProjects() {
   localStorage.setItem("projects", JSON.stringify(projects.projectArr));
@@ -196,9 +193,9 @@ function loadProjects() {
     projectIDelete.className = "fa-solid fa-trash";
 
     projectP.append(projectSpanEdit, projectSpanDelete);
-    // projectP.appendChild(projectSpanEdit);
-
     divMenu.appendChild(projectP);
+
+    //edit project
     projectSpanEdit.addEventListener("click", () => {
       projectInput.value = projects.projectArr[i].title;
       projectInput.id = i;
@@ -207,41 +204,28 @@ function loadProjects() {
       popUpBtn.className = "editProject";
       showPopUp(i);
     });
+
+    //delete project
     projectSpanDelete.addEventListener("click", () => {
       deleteProject(i);
-      // console.log(projects.projectArr[i]);
       document.getElementById("projectMenu").innerHTML = "";
       loadPage();
     });
   }
-  // console.log(JSON.parse(localStorage.getItem("projects")));
 }
 loadPage();
 
-// document.addEventListener("DOMContentLoaded", loadProjects);
-
-// const editProjectBtn = document.getElementById(i);
-// editProjectBtn.addEventListener("click", () => {
-//   addProjectBtn.textContent = "edit";
-//   addProjectBtn.id = "editProjectButton";
-//   editProject(i);
-// });
-
+//close popup
 function closePopUp() {
-  // projectInput.value = "";
   formPopUp.style.display = "none";
   mainContainer.classList.remove("blurr");
   popUpBtn.textContent = "Add";
   popUpBtn.id = "addProjectButton";
   document.getElementById("projectMenu").innerHTML = "";
-  // addProjectBtn.removeEventListener();
-
   loadPage();
 }
 function showPopUp() {
-  mainContainer.classList.add("blurr");
-  formPopUp.style.display = "block";
-  todoForm.style.display = "none";
+  blurrPage(formPopUp, todoForm);
   if (popUpBtn.className === "addProject") {
     popUpBtn.addEventListener(
       "click",
@@ -254,45 +238,35 @@ function showPopUp() {
     popUpBtn.addEventListener(
       "click",
       () => {
-        event.preventDefault();
-
-        // console.log();
+        // event.preventDefault();
         editProject(projectInput.id);
       },
       { once: true }
     );
   }
 }
+
 closePopUpBtn.addEventListener("click", () => {
   event.preventDefault();
   closePopUp();
 });
-function closeTodoInput() {
-  todoForm.style.display = "none";
+
+function removeBlurr(form) {
+  form.style.display = "none";
   mainContainer.classList.remove("blurr");
   document.querySelector(".todoList").style.display = "block";
 }
 closeToDoBtn.onclick = () => {
-  closeTodoInput();
+  removeBlurr(todoForm);
 };
 
 function editProject(index) {
-  // const editProjectBtn = document.querySelector("#editProjectButton");
-  // console.log(projects.projectArr);
-
   event.preventDefault();
-  // console.log(projectInput.value);
-
-  // const newProjectName = document.querySelector("#projectInput");
-  // console.log(newProjectName.value);
   projects.editProject(index, projectInput.value);
   document.getElementById("projectMenu").innerHTML = "";
-  closePopUp();
+  closePopUp(formPopUp);
 }
 
-// popUpBtn.addEventListener("click", () => {
-//   addProject();
-// });
 //add new project showing form
 function addProject() {
   event.preventDefault();
@@ -302,21 +276,12 @@ function addProject() {
     projects.addProject(projectInput.value);
     document.getElementById("projectMenu").innerHTML = "";
     mainContainer.classList.remove("blurr");
-    // console.log(projectInput.value);
   }
   loadPage();
-  //add eventlistener for adding project
-  // console.log(newProjectBtn);
-  // const closePopUpBtn = document.querySelector("#closePopUp");
 }
 function deleteProject(index) {
   projects.deleteProject(index);
 }
-
-// console.log(projects.projectArr);
-
-// console.log(projectInput.value);
-//hide form
 
 //load tasks
 function loadTasks(index) {
@@ -396,7 +361,7 @@ function loadTasks(index) {
 
 addTodoButton.addEventListener("click", () => {
   addListItem();
-  closeTodoInput();
+  removeBlurr(formPopUp);
   loadTasks(projectName.id);
 });
 
