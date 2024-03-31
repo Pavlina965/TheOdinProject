@@ -1,6 +1,6 @@
 const projects = (() => {
   let projectArr = [];
-  let projId = projectArr.length;
+  let projId;
   let currId =0;
   
   if (localStorage.getItem("projects")===null){
@@ -44,9 +44,9 @@ else {
   class Project {
     constructor(title) {
       this.title = title;
-      // console.log(currId);
+      projId = projectArr.length;
+      currId = projId;
       this.id = currId;
-      currId = projId +1;
       this.tasks = [];
     }
   }

@@ -177,10 +177,15 @@ li {
   margin: 0;
   padding: 0;
 }
-#todoList li {
+.todoDiv {
   padding: 5px;
   border-bottom: #4a4e69 1px solid;
   display: flex;
+  justify-content: space-between;
+}
+#todoList li{
+  display: flex;
+  width: 50%;
   justify-content: space-between;
 }
 .markDiv {

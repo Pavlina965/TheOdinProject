@@ -21,20 +21,36 @@ const toDo = (() => {
 
     projects.projectArr[projectID].tasks.push(task);
   }
+  function editTask(projectID,taskID,title,dueDate,newprojectID){
+    let currProject
+    let currTask 
+    if(projectID==newprojectID){
+      currTask = projects.projectArr[projectID].tasks[taskID];
+      currTask.title = title;
+      currTask.dueDate = dueDate;
+      localStorage.setItem("projects", JSON.stringify(projects.projectArr))
+    }
+    else{
+      currProject = projects.projectArr[newprojectID];
+      deleteTask(projectID,taskID);
+      addTask(title,newprojectID,dueDate);
+    }
+  }
   function deleteTask(projectID, taskID) {
     projects.projectArr[projectID].tasks.splice(taskID, 1);
   }
   function completeTask(projectID, taskID) {
     projects.projectArr[projectID].tasks[taskID].completed = true;
   }
-  function getTodayTask(projectID, taskID) {
+  function getTaskDate(projectID, taskID) {
     return projects.projectArr[projectID].tasks[taskID].dueDate;
   }
   return {
-    getTodayTask,
+    getTaskDate,
     addTask,
     deleteTask,
     completeTask,
+    editTask
   };
 })();
 export default toDo;
