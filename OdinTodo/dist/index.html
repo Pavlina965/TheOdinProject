@@ -24,7 +24,7 @@
         <form method="post">
           <div class="popUpInput">
             <label for="projectInput">Project Name:</label>
-            <input type="text" id="projectInput" required />
+            <input type="text" id="projectInput" />
           </div>
           <div class="buttons">
             <input type="submit" id="closePopUpButton" value="Close" />
@@ -33,11 +33,14 @@
         </form>
       </div>
       <div class="todoForm" style="display: none">
-        <h1>New Task</h1>
+        <h1 id="todoFormName">New Task</h1>
         <form>
           <div class="TodoInput">
             <label for="todoInput">Title:</label>
-            <input type="text" id="todoInput" required />
+            <input type="text" id="todoInput" />
+            <label for="todoProject">Project:</label>
+            <select id="todoProject"></select>
+
             <label for="dateInput">Due Date:</label>
             <input type="date" id="dateInput" />
           </div>
@@ -51,7 +54,7 @@
         <div id="projectMenu" class="menu"></div>
         <div class="todo">
           <div id="projectName" class="projecName">index</div>
-          
+
           <div class="todoList">
             <ul id="todoList"></ul>
             <div id="addTask"><i class="fa-solid fa-plus"></i>Add Task</div>

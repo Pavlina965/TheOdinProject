@@ -450,7 +450,6 @@ addTodoButton.addEventListener("click", function () {
 });
 function handleClickTodo(btnFunction, id, activeProject) {
   event.preventDefault();
-  // TODO: edit task -> add task
   if (btnFunction.id === "addTodoButton") {
     // todoInputTask.value = "Add Task";
     if (todoInputTask.value === "") {
