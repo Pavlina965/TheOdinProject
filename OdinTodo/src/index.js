@@ -37,6 +37,19 @@ function blurrPage(formShow, formHide) {
 }
 addTaskBtn.onclick = () => {
   blurrPage(todoForm, formPopUp);
+// console.log() 
+  // if(addTodoButton.id==="editTask"){
+  //   addTodoButton.id = "addTodoButton";
+  // }
+  todoInputTask.value = "";
+  const resetAddTodo = document.querySelector("#editTask");
+  if (resetAddTodo === null) {
+    console.log(todoFormName.textContent);
+  } else {
+    resetAddTodo.id = "addTodoButton";
+    resetAddTodo.value = "Add Task";
+    todoFormName.textContent = "Add Task";
+  }
   todoInputTask.value = "";
 };
 
@@ -268,17 +281,6 @@ function removeBlurr(form) {
 }
 closeToDoBtn.addEventListener("click", () => {
   event.preventDefault();
-  todoInputTask.value = "";
-  const resetAddTodo = document.querySelector("#editTask");
-  // console.log(resetAddTodo);
-  if (resetAddTodo === null) {
-    console.log(todoFormName.textContent);
-  } else {
-    resetAddTodo.id = "addTask";
-    resetAddTodo.value = "Add Task";
-    todoFormName.textContent = "Add Task";
-    console.log(todoFormName.textContent);
-  }
   removeBlurr(todoForm);
 });
 
@@ -425,7 +427,7 @@ function loadTasks(index) {
           addTodoButton.id = "editTask";
           todoFormName.innerHTML = "Edit Task";
           const taskDueDate = toDo.getTaskDate(activeProject.id,i)
-          console.log(taskDueDate)
+          // console.log(taskDueDate)
           todoInputDate.value = taskDueDate;
 
           handleClickTodo(btnFunction, i, activeProject);
@@ -440,15 +442,15 @@ function loadTasks(index) {
 
 addTodoButton.addEventListener("click", function () {
   const btnFunction = this;
-  todoFormName.textContent = "Add Task";
-  todoInputTask.id = "addTask";
-  // console.log(btnFunction);
+  // todoFormName.textContent = "New Task";
+  // addTodoButton.id = "addTodoButton";
+  console.log(btnFunction);
+  
   handleClickTodo(btnFunction);
 });
 function handleClickTodo(btnFunction, id, activeProject) {
   event.preventDefault();
   // TODO: edit task -> add task
-
   if (btnFunction.id === "addTodoButton") {
     // todoInputTask.value = "Add Task";
     if (todoInputTask.value === "") {
@@ -463,7 +465,7 @@ function handleClickTodo(btnFunction, id, activeProject) {
     for (let i = 0; i < projectOption.length; i++) {
       projectOption[i].disabled = false;
     }
-    
+    console.log("here")
     editTask(activeProject.id, id);
   }
   
